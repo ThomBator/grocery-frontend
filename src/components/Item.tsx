@@ -1,20 +1,22 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import {
-  Button,
   Checkbox,
   Editable,
   EditableInput,
   EditablePreview,
   HStack,
   IconButton,
-  Input,
-  Text,
 } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
-import { Form } from "react-router-dom";
-import supabase from "../config/supabase-client";
+import { useState } from "react";
+import ItemObject from "../types";
 
-function Item({ item, deleteItem, updateItem }) {
+interface itemProps {
+  item: ItemObject;
+  deleteItem: (item: ItemObject) => void;
+  updateItem: (description: string, item: ItemObject) => void;
+}
+
+function Item({ item, deleteItem, updateItem }: itemProps) {
   const [checked, setChecked] = useState(false);
 
   const handleCheck = () => {
@@ -22,7 +24,7 @@ function Item({ item, deleteItem, updateItem }) {
     console.log(checked);
   };
 
-  const handleUpdate = (description) => {
+  const handleUpdate = (description: string) => {
     updateItem(description, item);
   };
   const handleDelete = () => {

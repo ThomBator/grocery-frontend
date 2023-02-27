@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { FormControl, HStack, Input, Button, Alert } from "@chakra-ui/react";
 import { Form } from "react-router-dom";
 import axios from "axios";
 
-function AddItem({ submitHandler }) {
+interface addItemProps {
+  fetchList: () => void;
+}
+
+export default function AddItem({ fetchList }: addItemProps) {
   const [inputValue, setInputValue] = useState("");
 
-  const insertData = async (event) => {
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
     const description = inputValue.trim();
 
     if (!description) {
@@ -16,18 +21,13 @@ function AddItem({ submitHandler }) {
         .post("http://localhost:5000/api/items", { description })
         .then((res) => {
           if (res.data) {
-            submitHandler();
+            fetchList();
             setInputValue("");
           } else {
             console.error("Insert item failed");
           }
         });
     }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    insertData(event);
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -48,5 +48,3 @@ function AddItem({ submitHandler }) {
     </Form>
   );
 }
-
-export default AddItem;

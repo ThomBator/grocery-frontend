@@ -9,12 +9,12 @@ function MainLayout() {
       <GridItem
         as="nav"
         colSpan={{ base: 6, lg: 1 }}
-        bgGradient="linear(to-b, green.500, green.700)"
+        bg="green.500"
         color="white"
         p={{ base: "20px", lg: "30px" }}
         minH={{ base: "2rem", lg: "100vh" }}
       >
-        <Navigation height="100%" />
+        <Navigation />
       </GridItem>
       <GridItem as="main" colSpan={{ base: 6, lg: 5 }}>
         <Outlet />

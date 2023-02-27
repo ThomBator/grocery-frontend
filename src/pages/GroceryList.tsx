@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  FormControl,
-  Heading,
-  HStack,
-  Input,
-  VStack,
-  Card,
-  Container,
-  Divider,
-} from "@chakra-ui/react";
-import { Form } from "react-router-dom";
+import { Heading, VStack, Card, Container } from "@chakra-ui/react";
+
 import AddItem from "../components/AddItem";
 import ItemsList from "../components/ItemsList";
-import supabase from "../config/supabase-client";
 import axios from "axios";
+import ItemObject from "../types";
 
 function GroceryList() {
   const [list, setList] = useState([]);
@@ -30,7 +20,8 @@ function GroceryList() {
       });
   };
 
-  const updateItem = async (description, item) => {
+  const updateItem = async (description: string, item: ItemObject) => {
+    console.log;
     axios
       .put(`http://localhost:5000/api/items/${item.id}`, { description })
       .then((res) => {
@@ -42,7 +33,8 @@ function GroceryList() {
       });
   };
 
-  const deleteItem = async (item) => {
+  const deleteItem = async (item: ItemObject) => {
+    console.log(item);
     axios.delete(`http://localhost:5000/api/items/${item.id}`).then((res) => {
       if (res.data) {
         fetchList();
@@ -86,7 +78,7 @@ function GroceryList() {
           >
             Grocery List
           </Heading>
-          <AddItem submitHandler={fetchList} />
+          <AddItem fetchList={fetchList} />
 
           <ItemsList
             items={list}

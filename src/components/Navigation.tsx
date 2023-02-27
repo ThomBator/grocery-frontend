@@ -23,7 +23,7 @@ function Navigation() {
       justifyContent="space-between"
       minH="100%"
     >
-      <Flex alignItems="flex-end" spacing="-0.5rem">
+      <Flex alignItems="flex-end" gap="-0.5rem">
         <Image boxSize="3rem" src="../../public/images/paper-bag.png" />
 
         <Text
