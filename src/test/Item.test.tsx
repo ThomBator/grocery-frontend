@@ -46,7 +46,8 @@ describe("Suite of tests for Item.tsx component", () => {
   });
 
   test("input default value should be Milk", () => {
-    const mockFunction = vi.fn();
+    const mockFunction = vi.fn(() => {});
+
     render(
       <Item
         item={mockItem}
@@ -58,8 +59,9 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(input).toHaveValue("Milk");
   });
 
+  //This test fails
   test("input value should be changeable, updateItem should fire", async () => {
-    const mockFunction = vi.fn();
+    const mockFunction = vi.fn(() => {});
     render(
       <Item
         item={mockItem}
@@ -72,5 +74,23 @@ describe("Suite of tests for Item.tsx component", () => {
     user.click(input);
     user.keyboard("coffee");
     await fireEvent.keyPress(input, { key: "Enter", code: "Enter" });
+    expect(mockFunction.mock.calls).toHaveLength(1);
+  });
+
+  //This test is not working
+  test("function should fire on click of delete button", () => {
+    const mockFunction = vi.fn();
+    render(
+      <Item
+        item={mockItem}
+        deleteItem={mockFunction}
+        updateItem={mockFunction}
+      />
+    );
+    const deleteButton = screen.getByRole("button", {
+      name: /delete list item/i,
+    });
+    user.click(deleteButton);
+    expect(mockFunction).toHaveBeenCalled();
   });
 });

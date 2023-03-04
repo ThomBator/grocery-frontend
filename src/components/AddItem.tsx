@@ -30,7 +30,7 @@ export default function AddItem({ fetchList }: addItemProps) {
     }
   };
   return (
-    <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <FormControl>
         <HStack>
           <Input
@@ -45,6 +45,6 @@ export default function AddItem({ fetchList }: addItemProps) {
           </Button>
         </HStack>
       </FormControl>
-    </Form>
+    </form>
   );
 }
