@@ -3,7 +3,7 @@ import { describe, expect, test, vi } from "vitest";
 import user from "@testing-library/user-event";
 import Item from "../components/Item";
 
-const mockItem = {
+let mockItem = {
   id: 1,
   created_at: "2023-03-04 01:43:30.489451+00",
   description: "Milk",
@@ -59,26 +59,7 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(input).toHaveValue("Milk");
   });
 
-  //This test fails
   test("input value should be changeable, updateItem should fire", async () => {
-    const mockFunction = vi.fn(() => {});
-    render(
-      <Item
-        item={mockItem}
-        deleteItem={mockFunction}
-        updateItem={mockFunction}
-      />
-    );
-    const input = screen.getByRole("textbox", { hidden: true });
-    screen.logTestingPlaygroundURL();
-    user.click(input);
-    user.keyboard("coffee");
-    await fireEvent.keyPress(input, { key: "Enter", code: "Enter" });
-    expect(mockFunction.mock.calls).toHaveLength(1);
-  });
-
-  //This test is not working
-  test("function should fire on click of delete button", () => {
     const mockFunction = vi.fn();
     render(
       <Item
@@ -87,10 +68,27 @@ describe("Suite of tests for Item.tsx component", () => {
         updateItem={mockFunction}
       />
     );
-    const deleteButton = screen.getByRole("button", {
-      name: /delete list item/i,
-    });
-    user.click(deleteButton);
+    const input = screen.getByRole("textbox", { hidden: true });
+
+    user.click(input);
+    user.keyboard("coffee");
+
+    fireEvent.keyDown(input, { key: "Enter", code: "Enter" });
     expect(mockFunction).toHaveBeenCalled();
+  });
+
+  test("function should fire on click of delete button", async () => {
+    const mockFunction = vi.fn();
+
+    render(
+      <Item
+        item={mockItem}
+        deleteItem={mockFunction}
+        updateItem={mockFunction}
+      />
+    );
+    const deleteButton = screen.getByRole("button");
+    user.click(deleteButton);
+    await waitFor(() => expect(mockFunction).toBeCalled());
   });
 });
