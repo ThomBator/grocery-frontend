@@ -13,3 +13,16 @@ test("Component renders form with input and submit button", () => {
   expect(input).toBeInTheDocument();
   expect(button).toBeInTheDocument();
 });
+
+test("After new input is submitted, input field is cleared", async () => {
+  const mockFunction = vi.fn();
+  render(<AddItem fetchList={mockFunction} />);
+
+  const input = screen.getByRole("textbox");
+  const button = screen.getByRole("button");
+  user.click(input);
+  user.keyboard("Apples");
+  user.click(button);
+  const newInput = await screen.findByRole("textbox");
+  expect(newInput).toHaveValue("");
+});

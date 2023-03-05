@@ -15,7 +15,7 @@ const mockItems = [
   },
 ];
 
-test("Component should render with list", () => {
+test("Component should render with list with two mock elements", () => {
   const mockFunction = vi.fn();
   render(
     <ItemsList
@@ -24,7 +24,12 @@ test("Component should render with list", () => {
       updateItem={mockFunction}
     />
   );
+  screen.logTestingPlaygroundURL();
+  const list = screen.getAllByRole("list");
+  expect(list).toHaveLength(1);
+  const milk = screen.getByDisplayValue(/milk/i);
+  const coffee = screen.getByDisplayValue(/coffee/i);
 
-  const listItems = screen.getAllByRole("list");
-  expect(listItems).toHaveLength(1);
+  expect(milk).toBeInTheDocument();
+  expect(coffee).toBeInTheDocument();
 });
