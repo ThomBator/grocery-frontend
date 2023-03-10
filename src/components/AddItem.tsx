@@ -40,7 +40,7 @@ export default function AddItem({ fetchList }: addItemProps) {
             onChange={(e) => setInputValue(e.target.value)}
             width="300px"
           />
-          <Button type="submit" colorScheme="green">
+          <Button data-testid="addButton" type="submit" colorScheme="green">
             Add
           </Button>
         </HStack>

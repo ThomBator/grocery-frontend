@@ -31,7 +31,6 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(deleteButton).toBeInTheDocument();
   });
 
-  //Testing that default values are present
   test("Checkbox should be unchecked by default", () => {
     const mockFunction = vi.fn();
     render(
@@ -43,6 +42,20 @@ describe("Suite of tests for Item.tsx component", () => {
     );
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
+  });
+
+  test("Checkbox should be checked when user clicks it", async () => {
+    const mockFunction = vi.fn();
+    render(
+      <Item
+        item={mockItem}
+        deleteItem={mockFunction}
+        updateItem={mockFunction}
+      />
+    );
+    const checkbox = screen.getByRole("checkbox");
+    await user.click(checkbox);
+    expect(checkbox).toBeChecked();
   });
 
   test("input default value should be Milk", () => {

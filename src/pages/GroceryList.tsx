@@ -10,48 +10,65 @@ function GroceryList() {
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
-    axios
-      .get("http://localhost:5000/api/items")
-      .then((res) => {
-        setList(res.data);
-      })
-      .catch((err) => {
-        console.error("Error fetching items");
-      });
+    try {
+      axios
+        .get("http://localhost:5000/api/items")
+
+        .then((res) => {
+          setList(res.data);
+        })
+        .catch((err) => {
+          console.error("Error fetching items");
+        });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const updateItem = async (description: string, item: ItemObject) => {
-    console.log;
-    axios
-      .put(`http://localhost:5000/api/items/${item.id}`, { description })
-      .then((res) => {
-        if (res.data) {
-          fetchList();
-        } else {
-          console.error("Error updating item");
-        }
-      });
+    try {
+      axios
+        .put(`http://localhost:5000/api/items/${item.id}`, { description })
+        .then((res) => {
+          if (res.data) {
+            fetchList();
+          } else {
+            console.error("Error updating item");
+          }
+        });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const deleteItem = async (item: ItemObject) => {
-    console.log(item);
-    axios.delete(`http://localhost:5000/api/items/${item.id}`).then((res) => {
-      if (res.data) {
-        fetchList();
-      } else {
-        console.error("error deleting item");
-      }
-    });
+    try {
+      axios.delete(`http://localhost:5000/api/items/${item.id}`).then((res) => {
+        if (res.data) {
+          fetchList();
+        } else {
+          console.error("error deleting item");
+        }
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const deleteAll = async () => {
-    axios.delete("http://localhost:5000/api/items").then((res) => {
-      console.log(res.data);
-    });
+    try {
+      axios.delete("http://localhost:5000/api/items").then((res) => {
+        console.log(res.data);
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
-    deleteAll();
+    fetchList();
+    //will add deleteAll() function call here when pushing to production
+    //This will control the content in the list
   }, []);
 
   return (
