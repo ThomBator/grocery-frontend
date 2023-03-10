@@ -19,7 +19,21 @@ test("component should render with input and button", () => {
 
 test("List of existing database items should appear when component renders", async () => {
   render(<GroceryList />);
+
   waitFor(() => expect(screen.getByText(/milk/i)).toBeInTheDocument());
 
   waitFor(() => expect(screen.getByText(/coffee/i)).toBeInTheDocument());
+});
+
+//Integration test
+test("User can input a new item and add to list", () => {
+  render(<GroceryList />);
+  const input = screen.getByRole("textbox");
+  const button = screen.getByTestId("addButton");
+
+  user.click(input);
+  user.keyboard("Apples");
+  user.click(button);
+
+  waitFor(() => expect(screen.getByText(/apples/i)).toBeInTheDocument());
 });

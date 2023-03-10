@@ -24,11 +24,11 @@ test("Component should render with list with two mock elements", () => {
       updateItem={mockFunction}
     />
   );
-  screen.logTestingPlaygroundURL();
+
   const list = screen.getAllByRole("list");
   expect(list).toHaveLength(1);
-  const milk = screen.getByDisplayValue(/milk/i);
-  const coffee = screen.getByDisplayValue(/coffee/i);
+  const milk = screen.getByText(/milk/i);
+  const coffee = screen.getByText(/coffee/i);
 
   expect(milk).toBeInTheDocument();
   expect(coffee).toBeInTheDocument();
