@@ -39,6 +39,7 @@ export default function AddItem({ fetchList }: addItemProps) {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             width="300px"
+            maxLength={25}
           />
           <Button data-testid="addButton" type="submit" colorScheme="green">
             Add

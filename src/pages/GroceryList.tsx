@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Heading, VStack, Card, Container } from "@chakra-ui/react";
+import {
+  Heading,
+  VStack,
+  Card,
+  Container,
+  Spinner,
+  Alert,
+} from "@chakra-ui/react";
 
 import AddItem from "../components/AddItem";
 import ItemsList from "../components/ItemsList";
@@ -7,6 +14,7 @@ import axios from "axios";
 import ItemObject from "../types";
 
 function GroceryList() {
+  const [loading, setLoading] = useState(true);
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
@@ -16,9 +24,11 @@ function GroceryList() {
 
         .then((res) => {
           setList(res.data);
+          setLoading(false);
         })
         .catch((err) => {
           console.error("Error fetching items");
+          setLoading(false);
         });
     } catch (err) {
       console.error(err);
@@ -97,11 +107,15 @@ function GroceryList() {
           </Heading>
           <AddItem fetchList={fetchList} />
 
-          <ItemsList
-            items={list}
-            deleteItem={deleteItem}
-            updateItem={updateItem}
-          />
+          {loading ? (
+            <Spinner data-testid="spinner" />
+          ) : (
+            <ItemsList
+              items={list}
+              deleteItem={deleteItem}
+              updateItem={updateItem}
+            />
+          )}
         </VStack>
       </Card>
     </Container>

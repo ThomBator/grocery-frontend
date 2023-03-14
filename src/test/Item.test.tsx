@@ -10,7 +10,7 @@ let mockItem = {
 };
 
 describe("Suite of tests for Item.tsx component", () => {
-  //First test that all elements render
+  //Success case
   test("Item renders a checkbox, input and a button", () => {
     const mockFunction = vi.fn();
     render(
@@ -31,6 +31,7 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(deleteButton).toBeInTheDocument();
   });
 
+  //Success case
   test("Checkbox should be unchecked by default", () => {
     const mockFunction = vi.fn();
     render(
@@ -44,6 +45,7 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(checkbox).not.toBeChecked();
   });
 
+  //Success case
   test("Checkbox should be checked when user clicks it", async () => {
     const mockFunction = vi.fn();
     render(
@@ -58,6 +60,7 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(checkbox).toBeChecked();
   });
 
+  //Success case
   test("input default value should be Milk", () => {
     const mockFunction = vi.fn(() => {});
 
@@ -72,6 +75,7 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(input).toHaveValue("Milk");
   });
 
+  //Success case
   test("input value should be changeable, updateItem should fire", async () => {
     const mockFunction = vi.fn();
     render(
@@ -90,6 +94,7 @@ describe("Suite of tests for Item.tsx component", () => {
     expect(mockFunction).toHaveBeenCalled();
   });
 
+  //Success case
   test("function should fire on click of delete button", async () => {
     const mockFunction = vi.fn();
 

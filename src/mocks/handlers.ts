@@ -15,7 +15,7 @@ const mockItems = [
 
 export const handlers = [
   rest.get("http://localhost:5000/api/items", (req, res, ctx) => {
-    return res(ctx.json(mockItems));
+    return res(ctx.delay(2000), ctx.json(mockItems));
   }),
   rest.post("http://localhost:5000/api/items", (req, res, ctx) => {
     const description = req.description;
