@@ -17,12 +17,7 @@ import React from "react";
 //<a href="https://www.flaticon.com/free-icons/paper-bag" title="paper bag icons">Paper bag icons created by Freepik - Flaticon</a>
 function Navigation() {
   return (
-    <Flex
-      flexDirection="column"
-      alignItems={{ base: "flex-start", lg: "center" }}
-      justifyContent="space-between"
-      minH="100%"
-    >
+    <Flex flexDirection="column" alignItems="center" minH="100%">
       <Flex alignItems="flex-end" gap="-0.5rem">
         <Image boxSize="3rem" src="../../public/images/paper-bag.png" />
 

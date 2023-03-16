@@ -8,6 +8,7 @@ interface addItemProps {
 }
 
 export default function AddItem({ fetchList }: addItemProps) {
+  const URL = import.meta.env.VITE_URL;
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
@@ -17,16 +18,14 @@ export default function AddItem({ fetchList }: addItemProps) {
     if (!description) {
       return;
     } else {
-      axios
-        .post("http://localhost:5000/api/items", { description })
-        .then((res) => {
-          if (res.data) {
-            fetchList();
-            setInputValue("");
-          } else {
-            console.error("Insert item failed");
-          }
-        });
+      axios.post(URL, { description }).then((res) => {
+        if (res.data) {
+          fetchList();
+          setInputValue("");
+        } else {
+          console.error("Insert item failed");
+        }
+      });
     }
   };
   return (

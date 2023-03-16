@@ -13,11 +13,14 @@ const mockItems = [
   },
 ];
 
+const URL = import.meta.env.VITE_URL;
+
 export const handlers = [
-  rest.get("http://localhost:5000/api/items", (req, res, ctx) => {
+  rest.get(`${URL}`, async (req, res, ctx) => {
     return res(ctx.delay(2000), ctx.json(mockItems));
   }),
-  rest.post("http://localhost:5000/api/items", (req, res, ctx) => {
+
+  rest.post(`${URL}`, (req, res, ctx) => {
     const description = req.description;
     const newItem = {
       id: 3,

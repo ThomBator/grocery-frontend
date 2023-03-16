@@ -9,9 +9,19 @@ export const theme = extendTheme({
   styles: {
     global: {
       "html, body": {
+        margin: 0,
+        padding: 0,
         "background-color": "#fdf8f1",
         "background-image": " url(images/OG27A00.jpg)",
         "background-position": "center",
+      },
+      "*": {
+        "box-sizing": "border-box",
+      },
+      "#root": {
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100%",
       },
     },
   },
