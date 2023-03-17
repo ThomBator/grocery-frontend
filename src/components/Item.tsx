@@ -32,7 +32,7 @@ function Item({ item, deleteItem, updateItem }: itemProps) {
   };
 
   return (
-    <HStack mb="1rem" spacing=".75rem">
+    <HStack mb="1rem" spacing=".75rem" justify="flex-start">
       <Checkbox
         colorScheme="green"
         isChecked={checked}
@@ -47,13 +47,13 @@ function Item({ item, deleteItem, updateItem }: itemProps) {
           borderBottom="2px"
           borderStyle="dotted"
           borderColor="gray.200"
-          width="300px"
           pl="1rem"
           color="gray.800"
           textDecoration={checked ? "line-through" : "none"}
+          width={{ base: "200px", md: "300px" }}
         />
 
-        <EditableInput width="300px" />
+        <EditableInput width={{ base: "200px", md: "300px" }} />
       </Editable>
 
       <IconButton

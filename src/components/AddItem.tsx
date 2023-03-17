@@ -1,5 +1,12 @@
 import React, { FormEvent, useState } from "react";
-import { FormControl, HStack, Input, Button, Alert } from "@chakra-ui/react";
+import {
+  FormControl,
+  HStack,
+  Input,
+  Button,
+  Alert,
+  Flex,
+} from "@chakra-ui/react";
 import { Form } from "react-router-dom";
 import axios from "axios";
 
@@ -32,7 +39,11 @@ export default function AddItem({ fetchList }: addItemProps) {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl>
-        <HStack>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          alignItems="center"
+          gap="2"
+        >
           <Input
             type="text"
             placeholder="Add an item..."
@@ -41,10 +52,15 @@ export default function AddItem({ fetchList }: addItemProps) {
             width="300px"
             maxLength={25}
           />
-          <Button data-testid="addButton" type="submit" colorScheme="green">
+          <Button
+            maxW="100px"
+            data-testid="addButton"
+            type="submit"
+            colorScheme="green"
+          >
             Add
           </Button>
-        </HStack>
+        </Flex>
       </FormControl>
     </form>
   );
