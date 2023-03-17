@@ -13,7 +13,7 @@ const mockItems = [
   },
 ];
 
-const URL = import.meta.env.VITE_URL;
+const URL = process.env.VITE_URL;
 
 export const handlers = [
   rest.get(`${URL}`, async (req, res, ctx) => {

@@ -8,7 +8,7 @@ interface addItemProps {
 }
 
 export default function AddItem({ fetchList }: addItemProps) {
-  const URL = import.meta.env.VITE_URL;
+  const URL = process.env.VITE_URL;
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
@@ -18,7 +18,7 @@ export default function AddItem({ fetchList }: addItemProps) {
     if (!description) {
       return;
     } else {
-      axios.post(URL, { description }).then((res) => {
+      axios.post(`${URL}`, { description }).then((res) => {
         if (res.data) {
           fetchList();
           setInputValue("");
