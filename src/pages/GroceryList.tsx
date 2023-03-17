@@ -6,7 +6,7 @@ import ItemsList from "../components/ItemsList";
 import axios from "axios";
 import ItemObject from "../types";
 
-const URL = process.env.VITE_URL ?? import.meta.env.VITE_URL;
+const URL = process.env.VITE_URL;
 
 function GroceryList() {
   const [loading, setLoading] = useState(true);
