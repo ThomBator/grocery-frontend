@@ -1,6 +1,6 @@
 import React from "react";
 import Item from "./Item";
-import { List, ListItem, Text } from "@chakra-ui/react";
+import { Box, List, ListItem, Text } from "@chakra-ui/react";
 import ItemObject from "../types";
 interface itemsListProps {
   items: ItemObject[];
@@ -23,7 +23,11 @@ function ItemsList({ items, deleteItem, updateItem }: itemsListProps) {
             </ListItem>
           ))}
       </List>
-      <Text as="sub">(Click on items to edit)</Text>
+
+      <Box mt="0" textAlign="center">
+        <p>*Database resets on every load for demo purposes. </p>
+        <p>Click on items to edit.</p>
+      </Box>
     </>
   );
 }

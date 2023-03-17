@@ -61,17 +61,31 @@ function GroceryList() {
   const deleteAll = async () => {
     try {
       axios.delete(`${URL}`).then((res) => {
-        console.log(res.data);
+        if (res.data) {
+          postOne();
+        }
       });
     } catch (err) {
       console.error(err);
     }
   };
 
+  const postOne = async () => {
+    try {
+      axios.post(`${URL}`, { description: "Apples" }).then((res) => {
+        if (res.data) {
+          fetchList();
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    fetchList();
     //will add deleteAll() function call here when pushing to production
-    //This will control the content in the list
+    //Then one demo item is addded to db, to control what content is shown
+    deleteAll();
   }, []);
 
   return (
