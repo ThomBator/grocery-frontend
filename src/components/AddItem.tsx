@@ -8,7 +8,7 @@ interface addItemProps {
 }
 
 export default function AddItem({ fetchList }: addItemProps) {
-  const URL = import.meta.env.VITE_URL;
+  const URL = process.env.VITE_URL;
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (event: FormEvent) => {

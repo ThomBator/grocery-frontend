@@ -14,7 +14,7 @@ import axios from "axios";
 import ItemObject from "../types";
 
 function GroceryList() {
-  const URL = import.meta.env.VITE_URL;
+  const URL = process.env.VITE_URL;
 
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState([]);
@@ -22,7 +22,7 @@ function GroceryList() {
   const fetchList = async () => {
     try {
       axios
-        .get(URL)
+        .get(`${URL}`)
 
         .then((res) => {
           setList(res.data);
@@ -67,7 +67,7 @@ function GroceryList() {
 
   const deleteAll = async () => {
     try {
-      axios.delete(URL).then((res) => {
+      axios.delete(`${URL}`).then((res) => {
         console.log(res.data);
       });
     } catch (err) {
