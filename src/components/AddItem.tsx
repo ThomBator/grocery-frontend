@@ -8,7 +8,8 @@ interface addItemProps {
 }
 
 export default function AddItem({ fetchList }: addItemProps) {
-  const URL = process.env.VITE_URL;
+  const URL =
+    "https://grocery-backend-production-4ecf.up.railway.app/api/items/";
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
