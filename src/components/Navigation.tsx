@@ -19,7 +19,7 @@ function Navigation() {
   return (
     <Flex flexDirection="column" alignItems="center" minH="100%">
       <Flex alignItems="flex-end" gap="-0.5rem">
-        <Image boxSize="3rem" src="images/paper-bag.png" />
+        <Image boxSize="3rem" src="../../images/paper-bag.png" />
 
         <Text
           as="h1"
