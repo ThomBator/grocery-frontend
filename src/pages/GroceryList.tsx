@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {
-  Heading,
-  VStack,
-  Card,
-  Container,
-  Spinner,
-  Alert,
-} from "@chakra-ui/react";
+import { Heading, VStack, Card, Container, Spinner } from "@chakra-ui/react";
 
 import AddItem from "../components/AddItem";
 import ItemsList from "../components/ItemsList";
 import axios from "axios";
 import ItemObject from "../types";
 
-function GroceryList() {
-  const URL = import.meta.env.VITE_URL;
+const URL = process.env.VITE_URL ?? import.meta.env.VITE_URL;
 
+function GroceryList() {
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState([]);
 
